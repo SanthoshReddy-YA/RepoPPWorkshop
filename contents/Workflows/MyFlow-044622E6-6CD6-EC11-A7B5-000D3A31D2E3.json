@@ -1,0 +1,67 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365users": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "crda8_sharedoffice365users_039da"
+        },
+        "api": {
+          "name": "shared_office365users"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "97fa026a-feb6-4357-b44c-d5eb47ade0ed"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Get_my_profile_(V2)": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "6ef935d8-5b77-43ee-bbf5-0cce2a7d50ca"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365users",
+              "operationId": "MyProfile_V2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
+            },
+            "parameters": {},
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        }
+      }
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}
