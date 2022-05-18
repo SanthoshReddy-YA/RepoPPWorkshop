@@ -1,0 +1,16 @@
+Screen1 As screen:
+
+    Label1 As label:
+        Align: =Align.Center
+        Color: =RGBA(168, 0, 0, 1)
+        Fill: =RGBA(175, 191, 224, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Bold
+        Height: =112
+        Size: =40
+        Text: |-
+            ="Santhosh Reddy
+            "
+        Width: =1366
+        ZIndex: =1
+
